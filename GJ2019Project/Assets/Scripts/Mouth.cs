@@ -7,7 +7,7 @@ public class Mouth : MonoBehaviour
     public GameObject words;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         InvokeRepeating("speakAngryWords", 3f, 1.5f);
     }
