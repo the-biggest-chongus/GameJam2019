@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossAI : MonoBehaviour
 {
     public BossMouth mouth;
-    private float timeUntilRage = 10f;
+    private float timeUntilRage = 100f;
     private BossState bossFeelings = BossState.WALKING;
     private Animator animator;
 
@@ -20,6 +21,7 @@ public class BossAI : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         Invoke("rage", timeUntilRage);
+        walkAround();
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class BossAI : MonoBehaviour
     {
         if (bossFeelings == BossState.WALKING)
         {
-            walkAround();
+            
         }
         else if (bossFeelings == BossState.RAGING)
         {
@@ -39,6 +41,12 @@ public class BossAI : MonoBehaviour
     private void walkAround()
     {
         animator.SetTrigger("walking");
+        //float randomX = Random.Range(-100f, 100f);
+        //float randomZ = Random.Range(-100f, 100f);
+        Vector3 randomDestination = Vector3.forward;
+        print(randomDestination);
+
+        GetComponent<NavMeshAgent>().destination = randomDestination;
     }
 
     private void rage()
