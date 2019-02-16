@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
+    public BossMouth mouth;
     private bool raging = false;
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class BossAI : MonoBehaviour
         if (raging)
         {
             spinLikeCrazy();
+            angrySpewing();
         } else
         {
 
@@ -32,5 +34,10 @@ public class BossAI : MonoBehaviour
     private void spinLikeCrazy()
     {
         transform.Rotate(Vector3.up * 1000f * Time.deltaTime, Space.World);
+    }
+
+    private void angrySpewing()
+    {
+        mouth.crazySpewing();
     }
 }

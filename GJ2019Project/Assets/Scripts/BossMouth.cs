@@ -7,12 +7,17 @@ public class BossMouth : Mouth
     // Start is called before the first frame update
     public override void Start()
     {
-        base.Start();
+        //base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void crazySpewing()
+    {
+        base.startSpeakingAngryWords(0.1f);
     }
 }

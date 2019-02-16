@@ -663,6 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a485a10989535a4caa9976bb6f0b58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouth: {fileID: 182399502}
 --- !u!136 &878502563
 CapsuleCollider:
   m_ObjectHideFlags: 0
