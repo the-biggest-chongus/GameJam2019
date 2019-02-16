@@ -9,15 +9,17 @@ public class Mouth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("speakAngryWords", 3f, 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(words, transform.position, transform.rotation);
-        }
+        
+    }
+
+    private void speakAngryWords()
+    {
+        Instantiate(words, transform.position, transform.rotation);
     }
 }
