@@ -9,13 +9,23 @@ public class Mouth : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        InvokeRepeating("speakAngryWords", 3f, 1.5f);
+        startSpeakingAngryWords(1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    protected void startSpeakingAngryWords(float frequency)
+    {
+        InvokeRepeating("speakAngryWords", 0f, frequency);
+    }
+
+    protected void stopSpeakingAngryWords()
+    {
+        CancelInvoke("speakAngryWords");
     }
 
     private void speakAngryWords()
