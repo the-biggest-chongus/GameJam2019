@@ -46,8 +46,11 @@ public class BossAI : MonoBehaviour
     private void walkAround()
     {
         animator.SetTrigger("walking");
-        Vector3 randomDestination = Vector3.zero;
-        float randomDirection = Random.Range(1, 3);
+        float randomX = Random.Range(0, 50);
+        float randomZ = Random.Range(0, 50);
+        Vector3 randomDestination = new Vector3(randomX, 0f, randomZ);
+
+        /*
         switch (randomDirection)
         {
             case 1:
@@ -59,6 +62,7 @@ public class BossAI : MonoBehaviour
                 randomDestination = new Vector3(35, 0, 35);
                 break;
         }
+        */
 
         GetComponent<NavMeshAgent>().destination = randomDestination;
         rageInABit();
