@@ -8,7 +8,8 @@ public class EntranceController : MonoBehaviour
     public List<GameObject> WallList;
     public bool hitCentre = false;
 
-    public DialogueTrigger dialogueTrigger;
+    private DialogueTrigger dialogueTrigger;
+    private bool initialDialogueTriggered = false;
 
     // Start is called before the first frame update
     void Start(){
@@ -24,7 +25,10 @@ public class EntranceController : MonoBehaviour
             Enter();
         }
 
+
         dialogueTrigger = this.GetComponent<DialogueTrigger>();
+
+        
     }
 
     // Update is called once per frame
@@ -41,8 +45,11 @@ public class EntranceController : MonoBehaviour
             child.GetComponent<Renderer>().enabled = false;
         }
 
-        dialogueTrigger.TriggerDialogue();
-
+        if (initialDialogueTriggered == false)
+        {
+            dialogueTrigger.TriggerDialogue();
+            initialDialogueTriggered = true;
+        }
     }
 
     public void Exit(){
