@@ -5,30 +5,46 @@ using UnityEngine;
 public class BossAI : MonoBehaviour
 {
     public BossMouth mouth;
-    private bool raging = false;
+    private float timeUntilRage = 10f;
+    private BossState bossFeelings = BossState.WALKING;
+    private Animator animator;
+
+    private enum BossState
+    {
+        WALKING,
+        RAGING
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("rage", 1f);
+        animator = GetComponent<Animator>();
+        Invoke("rage", timeUntilRage);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (raging)
+        if (bossFeelings == BossState.WALKING)
+        {
+            walkAround();
+        }
+        else if (bossFeelings == BossState.RAGING)
         {
             spinLikeCrazy();
             angrySpewing();
-        } else
-        {
-
         }
+    }
+
+    private void walkAround()
+    {
+        animator.SetTrigger("walking");
     }
 
     private void rage()
     {
-        raging = true;
+        bossFeelings = BossState.RAGING;
+        animator.SetTrigger("raging");
     }
 
     private void spinLikeCrazy()
