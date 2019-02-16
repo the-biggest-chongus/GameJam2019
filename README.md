@@ -17,4 +17,14 @@
 
 Only the biggest of the chonguses.
 
+---
+
+# Themes:
+### Main:
+Energy
+### Sub:
+Lost in Space - Offworld
+Be Kind - Eastside Games
+
+
 
