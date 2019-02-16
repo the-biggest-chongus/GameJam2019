@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class BossAI : MonoBehaviour
 {
     public BossMouth mouth;
-    private float timeUntilRage = 100f;
+    private float timeUntilRage = 3f;
     private BossState bossFeelings = BossState.WALKING;
     private Animator animator;
 
@@ -41,10 +41,19 @@ public class BossAI : MonoBehaviour
     private void walkAround()
     {
         animator.SetTrigger("walking");
-        //float randomX = Random.Range(-100f, 100f);
-        //float randomZ = Random.Range(-100f, 100f);
-        Vector3 randomDestination = Vector3.forward;
-        print(randomDestination);
+        Vector3 randomDestination = Vector3.zero;
+        float randomDirection = Random.Range(1, 3);
+        switch (randomDirection)
+        {
+            case 1:
+                randomDestination = new Vector3(0,0,0);
+                print(Vector3.forward);
+                break;
+            case 2:
+                print("2");
+                randomDestination = new Vector3(35, 0, 35);
+                break;
+        }
 
         GetComponent<NavMeshAgent>().destination = randomDestination;
     }
@@ -57,6 +66,7 @@ public class BossAI : MonoBehaviour
 
     private void spinLikeCrazy()
     {
+        GetComponent<NavMeshAgent>().isStopped = true;
         transform.Rotate(Vector3.up * 1000f * Time.deltaTime, Space.World);
     }
 
