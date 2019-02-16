@@ -18,6 +18,6 @@ public class BossMouth : Mouth
 
     public void crazySpewing()
     {
-        base.startSpeakingAngryWords(0.1f);
+        base.startSpeakingAngryWords(0.01f);
     }
 }

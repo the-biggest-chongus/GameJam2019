@@ -6,6 +6,8 @@ public class Mouth : MonoBehaviour
 {
     public GameObject words;
 
+    private bool speakingAngrily = false;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -20,12 +22,17 @@ public class Mouth : MonoBehaviour
 
     protected void startSpeakingAngryWords(float frequency)
     {
-        InvokeRepeating("speakAngryWords", 0f, frequency);
+        if (!speakingAngrily) { 
+            InvokeRepeating("speakAngryWords", 0f, frequency);
+            speakingAngrily = true;
+        }
     }
 
     protected void stopSpeakingAngryWords()
     {
-        CancelInvoke("speakAngryWords");
+        
+            CancelInvoke("speakAngryWords");
+        
     }
 
     private void speakAngryWords()
