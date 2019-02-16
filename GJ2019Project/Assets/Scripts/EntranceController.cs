@@ -8,6 +8,8 @@ public class EntranceController : MonoBehaviour
     public List<GameObject> WallList;
     public bool hitCentre = false;
 
+    public DialogueTrigger dialogueTrigger;
+
     // Start is called before the first frame update
     void Start(){
         GameObject Parent = transform.parent.gameObject;
@@ -21,6 +23,8 @@ public class EntranceController : MonoBehaviour
         if (inside == true){
             Enter();
         }
+
+        dialogueTrigger = this.GetComponent<DialogueTrigger>();
     }
 
     // Update is called once per frame
@@ -36,6 +40,8 @@ public class EntranceController : MonoBehaviour
         foreach (GameObject child in WallList){
             child.GetComponent<Renderer>().enabled = false;
         }
+
+        dialogueTrigger.TriggerDialogue();
 
     }
 
