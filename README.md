@@ -1,6 +1,7 @@
 # GameJam2019
-BC Game Jam
+##BC Game Jam
 
+---
 
 | Members        |
 |----------------|
@@ -12,4 +13,8 @@ BC Game Jam
 | Ryan Thompson  |
 | Melissa Lee    |
 
+---
+
 Only the biggest of the chonguses.
+
+
