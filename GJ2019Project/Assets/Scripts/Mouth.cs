@@ -30,7 +30,7 @@ public class Mouth : MonoBehaviour
 
     protected void stopSpeakingAngryWords()
     {
-        
+        speakingAngrily = false;
             CancelInvoke("speakAngryWords");
         
     }

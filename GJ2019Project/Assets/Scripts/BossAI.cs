@@ -20,7 +20,7 @@ public class BossAI : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        Invoke("rage", timeUntilRage);
+        rageInABit();
         walkAround();
     }
 
@@ -36,6 +36,11 @@ public class BossAI : MonoBehaviour
             spinLikeCrazy();
             angrySpewing();
         }
+    }
+
+    private void rageInABit()
+    {
+        Invoke("rage", timeUntilRage);
     }
 
     private void walkAround()
@@ -56,6 +61,7 @@ public class BossAI : MonoBehaviour
         }
 
         GetComponent<NavMeshAgent>().destination = randomDestination;
+        rageInABit();
     }
 
     private void rage()
@@ -86,5 +92,6 @@ public class BossAI : MonoBehaviour
     private void stopSpewing()
     {
         mouth.stopCrazySpewing();
+        walkAround();
     }
 }
