@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4957625232246354831}
   - component: {fileID: 5214997069159944714}
   - component: {fileID: 6478657563845676067}
+  - component: {fileID: 3217320471047206682}
   m_Layer: 0
   m_Name: Words
   m_TagString: Untagged
@@ -106,5 +107,17 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3217320471047206682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478657563845676066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3e8d1839623ca4b8dd71b5999fa148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
