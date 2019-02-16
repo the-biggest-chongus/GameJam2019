@@ -62,6 +62,7 @@ public class BossAI : MonoBehaviour
     {
         bossFeelings = BossState.RAGING;
         animator.SetTrigger("raging");
+        Invoke("stopRaging", 4f);
     }
 
     private void spinLikeCrazy()
@@ -73,5 +74,17 @@ public class BossAI : MonoBehaviour
     private void angrySpewing()
     {
         mouth.crazySpewing();
+    }
+
+    private void stopRaging()
+    {
+        stopSpewing();
+        // spinning will stop once out of raging state
+        bossFeelings = BossState.WALKING;
+    }
+
+    private void stopSpewing()
+    {
+        mouth.stopCrazySpewing();
     }
 }

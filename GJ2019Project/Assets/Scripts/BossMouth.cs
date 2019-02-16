@@ -20,4 +20,9 @@ public class BossMouth : Mouth
     {
         base.startSpeakingAngryWords(0.025f);
     }
+
+    public void stopCrazySpewing()
+    {
+        base.stopSpeakingAngryWords();
+    }
 }
