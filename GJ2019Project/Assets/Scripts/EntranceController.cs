@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntranceController : MonoBehaviour
 {
-    public string status = "outside";
+    public bool inside = false;
     public List<GameObject> WallList;
     public bool hitCentre = false;
 
@@ -16,6 +16,10 @@ public class EntranceController : MonoBehaviour
             if (child.tag == "wall_disappear"){
                 WallList.Add(child.gameObject);
             }
+        }
+
+        if (inside == true){
+            Enter();
         }
     }
 
