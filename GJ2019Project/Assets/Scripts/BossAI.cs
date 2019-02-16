@@ -63,7 +63,7 @@ public class BossAI : MonoBehaviour
                 break;
         }
         */
-
+        GetComponent<NavMeshAgent>().isStopped = false;
         GetComponent<NavMeshAgent>().destination = randomDestination;
         rageInABit();
     }
