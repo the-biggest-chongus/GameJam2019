@@ -1,5 +1,5 @@
 # GameJam2019
-##BC Game Jam
+## BC Game Jam
 
 ---
 
