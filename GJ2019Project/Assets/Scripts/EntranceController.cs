@@ -32,6 +32,7 @@ public class EntranceController : MonoBehaviour
 
         print("in Enter()");
 
+        //make walls disappear
         foreach (GameObject child in WallList){
             child.GetComponent<Renderer>().enabled = false;
         }
@@ -42,6 +43,7 @@ public class EntranceController : MonoBehaviour
         //disappear[0].GetComponent<Renderer>().enabled = true;
         //disappear[1].GetComponent<Renderer>().enabled = true;
 
+        // make walls reappear
         foreach (GameObject child in WallList)
         {
             child.GetComponent<Renderer>().enabled = true;
