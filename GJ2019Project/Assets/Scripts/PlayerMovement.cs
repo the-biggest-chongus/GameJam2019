@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector3 forward, right;
     float speed = 4f;
+    public GameObject projectile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //wasd movement
-        if (Input.anyKey)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             Vector3 forwardDirection = new Vector3(0,0,0);
             Vector3 rightDirection = new Vector3(0, 0, 0);
@@ -44,5 +46,31 @@ public class PlayerMovement : MonoBehaviour
             transform.position += forwardDirection;
 
         }
+
+        //shoot position based on mouse position, looks for a "Terrain" tag
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit Hit;
+        Vector3 targetPos;
+        if (Physics.Raycast(ray, out Hit, 100))
+        {
+            if (Hit.collider.gameObject.tag == "Terrain")
+            {
+                Debug.DrawRay(transform.position, transform.position, Color.red);
+            }
+        }
+        targetPos = Hit.point;
+        targetPos.y = transform.position.y;
+        transform.LookAt(targetPos);
+
+
+
+        //Shooting
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(0,0.1f,0), Quaternion.identity);
+            bulletShot.transform.forward = transform.forward;
+        }
     }
+
 }
