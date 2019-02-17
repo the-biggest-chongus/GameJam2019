@@ -27,9 +27,13 @@ public class CubePlacer : MonoBehaviour
     public Text CubeText_L2;
     public Text CubeText_L3;
 
-    // Temp string for printing 
-    string TempText = ""; 
 
+
+    // Temp string for printing 
+    string TempText = "";
+
+    // Keeps track of lane score. If == 5 then all lanes are complete 
+    int score = 0; 
 
     private void Awake()
     {
@@ -56,20 +60,20 @@ public class CubePlacer : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if (CurrCube == 1 && CubeCount_L1 >= 1)
+                if (hitInfo.transform.tag == "Placeable" && CurrCube == 1 && CubeCount_L1 >= 1)
                 {
                     PlaceObj(hitInfo.point);
                     CubeCount_L1--;
                     CubeText_L1.text = "Count 1: " + CubeCount_L1.ToString();
                 }
-                if (CurrCube == 2 && CubeCount_L2 >= 1)
+                if (hitInfo.transform.tag == "Placeable" && CurrCube == 2 && CubeCount_L2 >= 1)
                 {
                     PlaceObj(hitInfo.point);
                     CubeCount_L2--;
                     CubeText_L2.text = "Count 2: " + CubeCount_L2.ToString();
 
                 }
-                if (CurrCube == 3 && CubeCount_L3 >= 1)
+                if (hitInfo.transform.tag == "Placeable" && CurrCube == 3 && CubeCount_L3 >= 1)
                 {
                     PlaceObj(hitInfo.point);
                     CubeCount_L3--;
@@ -77,7 +81,6 @@ public class CubePlacer : MonoBehaviour
 
                 }
             }
-
         }
 
         // Deletes obj at mouse position
@@ -91,16 +94,33 @@ public class CubePlacer : MonoBehaviour
             {
                 //Destroy(GameObject.Find(hitInfo.name));
                 //PlaceTestObj(hitInfo.point);
-                if (hitInfo.transform.tag == "Deletable")
+                if (hitInfo.transform.tag == "cube_1")
                 {
+                    // Need to increase counter for deleted block 
+                    CubeCount_L1++;
+                    CubeText_L1.text = "Count 1: " + CubeCount_L1.ToString();
+                    Destroy(hitInfo.collider.gameObject);
+
+                }
+                if (hitInfo.transform.tag == "cube_2")
+                {
+                    // Need to increase counter for deleted block 
+                    CubeCount_L2++;
+                    CubeText_L2.text = "Count 2: " + CubeCount_L2.ToString();
+                    Destroy(hitInfo.collider.gameObject);
+
+                }
+                if (hitInfo.transform.tag == "cube_3")
+                {
+                    // Need to increase counter for deleted block 
+                    CubeCount_L3++;
+                    CubeText_L3.text = "Count 3: " + CubeCount_L3.ToString();
                     Destroy(hitInfo.collider.gameObject);
 
                 }
             }
         }
-
     }
-
 
     // Uses numbers 1,2,3 to select Cube 
      
@@ -136,26 +156,33 @@ public class CubePlacer : MonoBehaviour
     private void PlaceObj(Vector3 clickPoint)
     {
         var objectPos = grid.GetNearestPointOnGrid(clickPoint);
+        objectPos += new Vector3(0, 0, 0.42f);
 
         // Apply Offset 
         if (CurrCube == 1)
-        { 
+        {
+            //objectPos += new Vector3(0, 0, 0.3f);
             Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
-
         }
         if (CurrCube == 2)
         {
-            objectPos += new Vector3(0, 0, 0.5f);
+            //objectPos += new Vector3(0, 0, 0.3f);
             Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
 
         }
         if (CurrCube == 3)
         {
-            objectPos += new Vector3(0, 0, 1f);
+           //objectPos += new Vector3(0, 0, 0.3f);
             Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
-
         }
-
-        Debug.Log("Trying to place shit"); 
+       // Debug.Log("Trying to place shit"); 
     }
+
+
+
+
+
+
+
+
 }

@@ -28,12 +28,12 @@ public class Grid : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        for (float x = 0; x < 7; x += size)
+        for (float x = 0; x < 10; x += size)
         {
-            for (float z = 0; z < 8; z += size)
+            for (float y = 0; y < 10; y += size)
             {
-                var point = GetNearestPointOnGrid(new Vector3(x, 0f, z));
-                Gizmos.DrawSphere(point, 0.2f);
+                var point = GetNearestPointOnGrid(new Vector3(x, y, 0f));
+                Gizmos.DrawSphere(point, 0.1f);
             }
 
         }

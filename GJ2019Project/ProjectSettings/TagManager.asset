@@ -6,6 +6,16 @@ TagManager:
   tags:
   - wall_disappear
   - Deletable
+  - Placeable
+  - cube_1
+  - cube_2
+  - cube_3
+  - win
+  - win1
+  - win2
+  - win3
+  - win4
+  - win5
   layers:
   - Default
   - TransparentFX
