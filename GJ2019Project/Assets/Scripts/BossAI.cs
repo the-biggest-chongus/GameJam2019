@@ -103,14 +103,26 @@ public class BossAI : MonoBehaviour
 
     private void stopRaging()
     {
-        stopSpewing();
-        // spinning will stop once out of raging state
+        if (bossFeelings == BossState.RAGING)
+        {
+            stopSpewing();
+            // spinning will stop once out of raging state
+        } else if (bossFeelings == BossState.REPRIMAND)
+        {
+            StopReprimanding();
+        }
         bossFeelings = BossState.WALKING;
     }
 
     private void stopSpewing()
     {
         mouth.stopCrazySpewing();
+        walkAround();
+    }
+
+    private void StopReprimanding()
+    {
+        mouth.stopCalculatedBarrage();
         walkAround();
     }
 }

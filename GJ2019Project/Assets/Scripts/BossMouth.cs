@@ -18,10 +18,12 @@ public class BossMouth : Mouth
     {
         if (sweeping && sweepLeft)
         {
-            transform.Rotate(Vector3.up * 50f * Time.deltaTime, Space.World);
+            print("sweep");
+            transform.Rotate(Vector3.up * 70f * Time.deltaTime, Space.World);
         } else if (sweeping && !sweepLeft)
         {
-            transform.Rotate(Vector3.up * -50f * Time.deltaTime, Space.World);
+            print("sweep2");
+            transform.Rotate(Vector3.up * -70f * Time.deltaTime, Space.World);
         }
     }
 
@@ -37,8 +39,11 @@ public class BossMouth : Mouth
 
     public void calculatedBarrage()
     {
+        // Reset rotation
+        transform.rotation = Quaternion.identity;
         sweeping = true;
         sweepLeft = true;
+
         Invoke("switchSweepDirection", 2f);
         base.startSpeakingAngryWords(0.1f);
     }
