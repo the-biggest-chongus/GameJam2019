@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField]
-    private List<Item> items;
+    private Dictionary<Item, int> items;
 
     // Start is called before the first frame update
     void Start()
     {
-        items = new List<Item>();
+        items = new Dictionary<Item, int>();
     }
 
     // Update is called once per frame
@@ -21,11 +20,24 @@ public class Inventory : MonoBehaviour
 
     public void addItem(Item item)
     {
-        items.Add(item);
+        if (items.ContainsKey(item))
+        {
+            int currentNumberOfItem = items[item];
+            items[item] = currentNumberOfItem + 1;
+        } else
+        {
+            items.Add(item, 1);
+        }
+        print("You now have " + items[item] + " " + item);
     }
 
-    public bool hasItem(Item item)
+    public int getNumberOfItem(Item item)
     {
-        return items.Contains(item);
+        int numberOfItem = 0;
+        if (items.ContainsKey(item))
+        {
+            numberOfItem = items[item];
+        }
+        return numberOfItem;
     }
 }
