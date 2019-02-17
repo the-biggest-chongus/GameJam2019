@@ -50,7 +50,7 @@ public class BossAI : MonoBehaviour
 
     private void walkAround()
     {
-        animator.SetTrigger("walking");
+        //animator.SetBool("walking", true);
         float randomX = Random.Range(0, 50);
         float randomZ = Random.Range(0, 50);
         Vector3 randomDestination = new Vector3(randomX, 0f, randomZ);
@@ -81,10 +81,13 @@ public class BossAI : MonoBehaviour
         if (chosenAttack == 1 && bossFeelings == BossState.WALKING)
         {
             bossFeelings = BossState.RAGING;
-            animator.SetTrigger("raging");
+            animator.SetBool("raging", true);
+            animator.SetBool("walking", false);
         } else if (chosenAttack == 2 && bossFeelings == BossState.WALKING)
         {
             bossFeelings = BossState.REPRIMAND;
+            animator.SetBool("reprimand", true);
+            animator.SetBool("walking", false);
             mouth.calculatedBarrage();
         }
 
@@ -109,10 +112,14 @@ public class BossAI : MonoBehaviour
             stopSpewing();
             // spinning will stop once out of raging state
             bossFeelings = BossState.WALKING;
+            animator.SetBool("raging", false);
+            animator.SetBool("walking", true);
         } else if (bossFeelings == BossState.REPRIMAND)
         {
             stopReprimanding();
             bossFeelings = BossState.WALKING;
+            animator.SetBool("reprimand", false);
+            animator.SetBool("walking", true);
         }
         
     }
