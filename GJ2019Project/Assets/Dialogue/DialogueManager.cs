@@ -13,35 +13,32 @@ public class DialogueManager : MonoBehaviour {
 	public Animator animator;
     public Animator optionAnimator;
 
-	private Queue<string> sentences;
+    private Queue<string> sentences;
     private bool hasOptions = false;
+    private Dialogue dialogue;
+    private int sentenceCount = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		sentences = new Queue<string>();
-	}
+    }
 
 	public void StartDialogue (Dialogue dialogue)
 	{
+        this.dialogue = dialogue;
+
 		animator.SetBool("IsOpen", true);
-
-        if (dialogue.hasChoice == true)
-        {
-            option1.text = dialogue.choice1;
-            option2.text = dialogue.choice2;
-            hasOptions = true;   
-            optionAnimator.SetBool("isOptionOpen", true);
-        }
-
 		nameText.text = dialogue.name;
 
 		sentences.Clear();
 
+        
 		foreach (string sentence in dialogue.sentences)
 		{
+
 			sentences.Enqueue(sentence);
 		}
-
+        
 		DisplayNextSentence();
 	}
 
@@ -53,7 +50,15 @@ public class DialogueManager : MonoBehaviour {
 			return;
 		}
 
-		string sentence = sentences.Dequeue();
+        if (sentenceCount == dialogue.questionSentence && dialogue.hasChoice)
+        {
+            option1.text = dialogue.choice1;
+            option2.text = dialogue.choice2;
+            hasOptions = true;
+            optionAnimator.SetBool("isOptionOpen", true);
+        }
+        sentenceCount++;
+        string sentence = sentences.Dequeue();
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
 	}
@@ -76,6 +81,44 @@ public class DialogueManager : MonoBehaviour {
         {
             optionAnimator.SetBool("isOptionOpen", false);
         }
+    }
+
+    public void Button1Clicked()
+    {
+        if(dialogue.correctChoice == 1)
+        {
+            correctAnswer();
+        }
+    }
+
+    public void Button2Clicked()
+    {
+        if (dialogue.correctChoice == 2)
+        {
+            correctAnswer();
+        }
+        else
+        {
+            incorrectAnswer();
+        }
+    }
+
+    private void correctAnswer()
+    {
+        foreach (string sentence in dialogue.resolve)
+        {
+            sentences.Enqueue(sentence);
+        }
+        DisplayNextSentence();
+    }
+
+    private void incorrectAnswer()
+    {
+        foreach (string sentence in dialogue.notresolve)
+        {
+            sentences.Enqueue(sentence);
+        }
+        DisplayNextSentence();
     }
 
 }

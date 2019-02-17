@@ -7,7 +7,7 @@ public class InteractionNPC : MonoBehaviour
     int happyState = 0;
     public GameObject heartParticles;
 
-
+    public DialogueManager dialogueManager;
     public GameObject attention;
 
     private DialogueTrigger dialogueTrigger;
