@@ -19,10 +19,10 @@ public class BossMouth : Mouth
     {
         if (sweeping && sweepLeft)
         {
-            transform.Rotate(Vector3.up * 70f * Time.deltaTime, Space.World);
+            transform.Rotate(Vector3.up * 90f * Time.deltaTime, Space.World);
         } else if (sweeping && !sweepLeft)
         {
-            transform.Rotate(Vector3.up * -70f * Time.deltaTime, Space.World);
+            transform.Rotate(Vector3.up * -90f * Time.deltaTime, Space.World);
         }
     }
 
