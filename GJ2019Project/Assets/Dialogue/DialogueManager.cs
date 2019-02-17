@@ -17,16 +17,18 @@ public class DialogueManager : MonoBehaviour {
     private bool hasOptions = false;
     private Dialogue dialogue;
     private int sentenceCount = 0;
+    private string npc;
 
     // Use this for initialization
     void Start () {
 		sentences = new Queue<string>();
     }
 
-	public void StartDialogue (Dialogue dialogue)
+	public void StartDialogue (string npc, Dialogue dialogue)
 	{
         if (!dialogue.isresolved)
         {
+            this.npc = npc;
             this.dialogue = dialogue;
 
             animator.SetBool("IsOpen", true);

@@ -41,7 +41,7 @@ public class EntranceController : MonoBehaviour
             child.GetComponent<Renderer>().enabled = false;
         }
 
-            dialogueTrigger.TriggerDialogue();
+            //dialogueTrigger.TriggerDialogue();
 
     }
 

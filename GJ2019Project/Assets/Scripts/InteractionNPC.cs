@@ -46,7 +46,7 @@ public class InteractionNPC : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            dialogueTrigger.TriggerDialogue();
+            dialogueTrigger.TriggerDialogue(this.gameObject.name);
             //print("happy state");
             //happyState = 1;
             //GameObject particlePlaced = Instantiate(heartParticles, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
