@@ -5,5 +5,6 @@ using UnityEngine;
 public enum Item
 {
     LAPTOP,
-    KEY
+    KEY,
+    FLOWER
 }
