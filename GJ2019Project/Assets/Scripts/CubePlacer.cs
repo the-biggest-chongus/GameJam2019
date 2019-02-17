@@ -27,19 +27,23 @@ public class CubePlacer : MonoBehaviour
     public Text CubeText_L2;
     public Text CubeText_L3;
 
+    // Temp string for printing 
     string TempText = ""; 
+
+
     private void Awake()
     {
         grid = FindObjectOfType<Grid>();
+        CubeText_L1.text = "Count 1: " + CubeCount_L1.ToString();
+        CubeText_L2.text = "Count 2: " + CubeCount_L2.ToString();
+        CubeText_L3.text = "Count 3: " + CubeCount_L3.ToString();
     }
 
     private void Update()
     {
        // ValidPosCheck();
-        ChangeCube();
-        Countupdate();
+        SelectCube();
         PlaceObj();
-        TestObj();
     }
 
     public void PlaceObj()
@@ -52,66 +56,55 @@ public class CubePlacer : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo))
             {
-
                 if (CurrCube == 1 && CubeCount_L1 >= 1)
                 {
-                    PlaceCubeNear(hitInfo.point);
+                    PlaceObj(hitInfo.point);
                     CubeCount_L1--;
+                    CubeText_L1.text = "Count 1: " + CubeCount_L1.ToString();
                 }
                 if (CurrCube == 2 && CubeCount_L2 >= 1)
                 {
-                    PlaceCubeNear(hitInfo.point);
+                    PlaceObj(hitInfo.point);
                     CubeCount_L2--;
+                    CubeText_L2.text = "Count 2: " + CubeCount_L2.ToString();
+
                 }
                 if (CurrCube == 3 && CubeCount_L3 >= 1)
                 {
-                    PlaceCubeNear(hitInfo.point);
+                    PlaceObj(hitInfo.point);
                     CubeCount_L3--;
-                }
+                    CubeText_L3.text = "Count 3: " + CubeCount_L3.ToString();
 
+                }
             }
 
         }
 
-    }
-    public void TestObj()
-    {
-        if (Input.GetMouseButtonDown(1))
+        // Deletes obj at mouse position
+        if (Input.GetKeyDown(KeyCode.F))
         {
+            Debug.Log("Attempting to Destroy object ");
             RaycastHit hitInfo;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hitInfo))
             {
-                PlaceTestObj(hitInfo.point);
+                //Destroy(GameObject.Find(hitInfo.name));
+                //PlaceTestObj(hitInfo.point);
+                if (hitInfo.transform.tag == "Deletable")
+                {
+                    Destroy(hitInfo.collider.gameObject);
+
+                }
             }
         }
-    }
-
-
-    public void Countupdate()
-    {
-        CubeText_L1.text = "Count 1: " + CubeCount_L1.ToString();
-        CubeText_L2.text = "Count 2: " + CubeCount_L2.ToString();
-        CubeText_L3.text = "Count 3: " + CubeCount_L3.ToString();
 
     }
 
 
-    public void ValidPosCheck()
-    {
-        RaycastHit hitInfo;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            PlaceCubeNear(hitInfo.point);
-        }
-
-    }
-
-    // Changes cube 
-    public void ChangeCube()
+    // Uses numbers 1,2,3 to select Cube 
+     
+    public void SelectCube()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -139,22 +132,30 @@ public class CubePlacer : MonoBehaviour
 
     }
 
-    private void PlaceCubeNear(Vector3 clickPoint)
+    // Instantiates object at nearest grid point 
+    private void PlaceObj(Vector3 clickPoint)
     {
-        var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
-        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
-
-        //GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = nearPoint;
-    }
-
-    private void PlaceTestObj(Vector3 clickPoint)
-    {
-       //var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
-        //                bluePortal = (GameObject)Instantiate(bluePortalPrefab, hit.point + (Vector3.up * 0.5f), rotation);
-
-
         var objectPos = grid.GetNearestPointOnGrid(clickPoint);
-        Instantiate(Cube_L2, objectPos, Quaternion.identity);
+
+        // Apply Offset 
+        if (CurrCube == 1)
+        { 
+            Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
+
+        }
+        if (CurrCube == 2)
+        {
+            objectPos += new Vector3(0, 0, 0.5f);
+            Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
+
+        }
+        if (CurrCube == 3)
+        {
+            objectPos += new Vector3(0, 0, 1f);
+            Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
+
+        }
+
         Debug.Log("Trying to place shit"); 
     }
 }
