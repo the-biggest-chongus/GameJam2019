@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BossAI : MonoBehaviour
 {
+    private float speed = 5f;
+
     public GameObject player;
     private bool TIMETORAGE = false;
     private bool initialMeeting = true;
@@ -29,7 +31,7 @@ public class BossAI : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        
+        GetComponent<NavMeshAgent>().speed = this.speed;
         walkAround();
     }
 
@@ -55,9 +57,11 @@ public class BossAI : MonoBehaviour
 
     private void beginRage()
     {
+        speed = 25f;
+        GetComponent<NavMeshAgent>().speed = this.speed;
         CancelInvoke("walkAround");
         TIMETORAGE = true;
-        rageInABit();
+        walkAround();
     }
 
     private void rageInABit()
