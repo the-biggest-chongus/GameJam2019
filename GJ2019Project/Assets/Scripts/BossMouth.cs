@@ -17,7 +17,7 @@ public class BossMouth : Mouth
     {
         if (sweeping)
         {
-            transform.Rotate(Vector3.up * 100f * Time.deltaTime, Space.World);
+            transform.Rotate(Vector3.up * 50f * Time.deltaTime, Space.World);
         }
     }
 
@@ -33,6 +33,13 @@ public class BossMouth : Mouth
 
     public void calculatedBarrage()
     {
+        sweeping = true;
         base.startSpeakingAngryWords(0.1f);
+    }
+
+    public void stopCalculatedBarrage()
+    {
+        sweeping = false;
+        base.stopSpeakingAngryWords();
     }
 }
