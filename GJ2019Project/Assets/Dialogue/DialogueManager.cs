@@ -80,11 +80,6 @@ public class DialogueManager : MonoBehaviour {
 	void EndDialogue()
 	{
 		animator.SetBool("IsOpen", false);
-
-        if (hasOptions == true)
-        {
-            optionAnimator.SetBool("isOptionOpen", false);
-        }
     }
 
     public void Button1Clicked()
@@ -113,6 +108,7 @@ public class DialogueManager : MonoBehaviour {
 
     private void correctAnswer()
     {
+        optionAnimator.SetBool("isOptionOpen", false);
         foreach (string sentence in dialogue.resolve)
         {
             sentences.Enqueue(sentence);
@@ -124,6 +120,7 @@ public class DialogueManager : MonoBehaviour {
 
     private void incorrectAnswer()
     {
+        optionAnimator.SetBool("isOptionOpen", false);
         foreach (string sentence in dialogue.notresolve)
         {
             sentences.Enqueue(sentence);

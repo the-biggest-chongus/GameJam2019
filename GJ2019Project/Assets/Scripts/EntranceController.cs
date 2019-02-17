@@ -10,6 +10,7 @@ public class EntranceController : MonoBehaviour
 
     public bool EnterValue = false;
     public bool ExitValue = true;
+    private DialogueTrigger dialogueTrigger;
 
     // Start is called before the first frame update
     void Start(){
@@ -33,6 +34,8 @@ public class EntranceController : MonoBehaviour
             ExitValue = true;
         }
 
+        
+        dialogueTrigger = this.GetComponent<DialogueTrigger>();
         
     }
 
