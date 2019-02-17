@@ -7,6 +7,7 @@ public class BossAI : MonoBehaviour
 {
     public BossMouth mouth;
     private float timeUntilRage = 3f;
+    [SerializeField]
     private BossState bossFeelings = BossState.WALKING;
     private Animator animator;
 
@@ -77,11 +78,11 @@ public class BossAI : MonoBehaviour
         int chosenAttack = Random.Range(1, 3);
         print(chosenAttack);
 
-        if (chosenAttack == 1)
+        if (chosenAttack == 1 && bossFeelings == BossState.WALKING)
         {
             bossFeelings = BossState.RAGING;
             animator.SetTrigger("raging");
-        } else if (chosenAttack == 2)
+        } else if (chosenAttack == 2 && bossFeelings == BossState.WALKING)
         {
             bossFeelings = BossState.REPRIMAND;
             mouth.calculatedBarrage();
@@ -107,11 +108,13 @@ public class BossAI : MonoBehaviour
         {
             stopSpewing();
             // spinning will stop once out of raging state
+            bossFeelings = BossState.WALKING;
         } else if (bossFeelings == BossState.REPRIMAND)
         {
-            StopReprimanding();
+            stopReprimanding();
+            bossFeelings = BossState.WALKING;
         }
-        bossFeelings = BossState.WALKING;
+        
     }
 
     private void stopSpewing()
@@ -120,7 +123,7 @@ public class BossAI : MonoBehaviour
         walkAround();
     }
 
-    private void StopReprimanding()
+    private void stopReprimanding()
     {
         mouth.stopCalculatedBarrage();
         walkAround();

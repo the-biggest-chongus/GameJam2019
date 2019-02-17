@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossMouth : Mouth
 {
+    [SerializeField] // allows us to see private variables in Inspector
     private bool sweeping = false;
     private bool sweepLeft = true;
 
@@ -18,11 +19,9 @@ public class BossMouth : Mouth
     {
         if (sweeping && sweepLeft)
         {
-            print("sweep");
             transform.Rotate(Vector3.up * 70f * Time.deltaTime, Space.World);
         } else if (sweeping && !sweepLeft)
         {
-            print("sweep2");
             transform.Rotate(Vector3.up * -70f * Time.deltaTime, Space.World);
         }
     }
@@ -40,7 +39,9 @@ public class BossMouth : Mouth
     public void calculatedBarrage()
     {
         // Reset rotation
-        transform.rotation = Quaternion.identity;
+        //transform.eulerAngles = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+
         sweeping = true;
         sweepLeft = true;
 
@@ -51,6 +52,7 @@ public class BossMouth : Mouth
     public void stopCalculatedBarrage()
     {
         sweeping = false;
+        //transform.eulerAngles = Vector3.zero;
         base.stopSpeakingAngryWords();
     }
 
