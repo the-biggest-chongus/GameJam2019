@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Vector3 forward, right;
-    float speed = 4f;
+    float speed = 6f;
     public GameObject projectile;
 
     float lastJumpTime = 0;
     float jumpRate = 0.1f;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -85,10 +87,5 @@ public class PlayerMovement : MonoBehaviour
             bulletShot.transform.forward = transform.forward;
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
-
 
 }
