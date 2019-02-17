@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossMouth : Mouth
 {
+    private bool sweeping = false;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -13,7 +15,10 @@ public class BossMouth : Mouth
     // Update is called once per frame
     void Update()
     {
-        
+        if (sweeping)
+        {
+            transform.Rotate(Vector3.up * 100f * Time.deltaTime, Space.World);
+        }
     }
 
     public void crazySpewing()
@@ -24,5 +29,10 @@ public class BossMouth : Mouth
     public void stopCrazySpewing()
     {
         base.stopSpeakingAngryWords();
+    }
+
+    public void calculatedBarrage()
+    {
+        base.startSpeakingAngryWords(0.1f);
     }
 }

@@ -75,6 +75,7 @@ public class BossAI : MonoBehaviour
     private void rage()
     {
         int chosenAttack = Random.Range(1, 3);
+        print(chosenAttack);
 
         if (chosenAttack == 1)
         {
@@ -83,14 +84,15 @@ public class BossAI : MonoBehaviour
         } else if (chosenAttack == 2)
         {
             bossFeelings = BossState.REPRIMAND;
+            mouth.calculatedBarrage();
         }
-      
+
+        GetComponent<NavMeshAgent>().isStopped = true;
         Invoke("stopRaging", 4f);
     }
 
     private void spinLikeCrazy()
     {
-        GetComponent<NavMeshAgent>().isStopped = true;
         transform.Rotate(Vector3.up * 1000f * Time.deltaTime, Space.World);
     }
 
