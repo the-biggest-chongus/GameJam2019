@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall_disappear
   - HurtfulWord
+  - KindWord
   layers:
   - Default
   - TransparentFX
