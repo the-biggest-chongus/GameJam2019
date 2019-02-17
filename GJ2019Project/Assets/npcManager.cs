@@ -24,14 +24,13 @@ public class npcManager : MonoBehaviour
 
         public void resolve(GameObject npc)
     {
-        print("npc resolved");
-        print(npc.name);
         int i = 0;
         while (i < npcs.Count)
         {
             if(npcs[i] == npc)
             {
-                print("tru");
+                print("npc resolved");
+                print(npc.name);
                 completed[i] = true;
                 completedCount++;
             }
