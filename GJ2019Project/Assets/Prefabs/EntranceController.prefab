@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 21.148567, y: 2.1270697, z: 0.22368184}
-  m_Center: {x: 10.07428, y: 0.019286508, z: 0.015609231}
+  m_Size: {x: 10.405692, y: 4.0501504, z: 0.22368185}
+  m_Center: {x: 4.702843, y: 0.05326235, z: 0.015609321}
 --- !u!114 &7996949138824043532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,8 +101,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 21.148567, y: 2.1270697, z: 0.22368184}
-  m_Center: {x: 10.07428, y: 0.019286508, z: 0.015609231}
+  m_Size: {x: 10.723788, y: 4.7009172, z: 0.22368184}
+  m_Center: {x: 4.8618913, y: 0.02123031, z: 0.0156092895}
 --- !u!114 &7996949138937098442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 7996949139506883376}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -6.26, y: 0.966, z: 8.49}
-  m_LocalScale: {x: 0.18440008, y: 1.2686005, z: 1}
+  m_LocalScale: {x: 1, y: 1.2686024, z: 1}
   m_Children:
   - {fileID: 7996949138824043531}
   - {fileID: 7996949138937098440}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca16b70ce6a94906aae2e7810688e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: outside
+  inside: 0
   WallList: []
   hitCentre: 0
 --- !u!65 &7996949139506883377
@@ -223,5 +223,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 21.29231, y: 2, z: 0.16183479}
-  m_Center: {x: 10.146152, y: 6.2859483e-13, z: 0.0032447912}
+  m_Size: {x: 10.396739, y: 4.188606, z: 0.16183479}
+  m_Center: {x: 4.6983647, y: 0.057814676, z: 0.0032448454}
