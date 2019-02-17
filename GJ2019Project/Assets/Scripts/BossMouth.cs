@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossMouth : Mouth
 {
     private bool sweeping = false;
+    private bool sweepLeft = true;
 
     // Start is called before the first frame update
     public override void Start()
@@ -15,9 +16,12 @@ public class BossMouth : Mouth
     // Update is called once per frame
     void Update()
     {
-        if (sweeping)
+        if (sweeping && sweepLeft)
         {
             transform.Rotate(Vector3.up * 50f * Time.deltaTime, Space.World);
+        } else if (sweeping && !sweepLeft)
+        {
+            transform.Rotate(Vector3.up * -50f * Time.deltaTime, Space.World);
         }
     }
 
@@ -34,6 +38,8 @@ public class BossMouth : Mouth
     public void calculatedBarrage()
     {
         sweeping = true;
+        sweepLeft = true;
+        Invoke("switchSweepDirection", 2f);
         base.startSpeakingAngryWords(0.1f);
     }
 
@@ -41,5 +47,10 @@ public class BossMouth : Mouth
     {
         sweeping = false;
         base.stopSpeakingAngryWords();
+    }
+
+    private void switchSweepDirection()
+    {
+        sweepLeft = false;
     }
 }
