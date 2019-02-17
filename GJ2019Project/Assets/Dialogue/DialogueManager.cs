@@ -7,30 +7,48 @@ public class DialogueManager : MonoBehaviour {
 
 	public Text nameText;
 	public Text dialogueText;
+    public Text option1;
+    public Text option2;
+
+    public npcManager npcM;
 
 	public Animator animator;
+    public Animator optionAnimator;
 
-	private Queue<string> sentences;
+    private Queue<string> sentences;
+    private Dialogue dialogue;
+    private int sentenceCount = 0;
+    private GameObject npc;
+    private bool hasoption = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		sentences = new Queue<string>();
-	}
+    }
 
-	public void StartDialogue (Dialogue dialogue)
+	public void StartDialogue (GameObject npc, Dialogue dialogue)
 	{
-		animator.SetBool("IsOpen", true);
+        if (!dialogue.isresolved)
+        {
+            sentenceCount = 0;
+            this.npc = npc;
+            this.dialogue = dialogue;
 
-		nameText.text = dialogue.name;
+            option1.text = dialogue.choice1;
+            option2.text = dialogue.choice2;
 
-		sentences.Clear();
+            animator.SetBool("IsOpen", true);
+            nameText.text = dialogue.name;
 
-		foreach (string sentence in dialogue.sentences)
-		{
-			sentences.Enqueue(sentence);
-		}
+            sentences.Clear();
 
-		DisplayNextSentence();
+            foreach (string sentence in dialogue.sentences)
+            {
+                sentences.Enqueue(sentence);
+            }
+
+            DisplayNextSentence();
+        }
 	}
 
 	public void DisplayNextSentence ()
@@ -41,7 +59,15 @@ public class DialogueManager : MonoBehaviour {
 			return;
 		}
 
-		string sentence = sentences.Dequeue();
+        if (sentenceCount == dialogue.questionSentence && dialogue.hasChoice)
+        {
+            optionAnimator.SetBool("isOptionOpen", true);
+            hasoption = true;
+        }
+
+        sentenceCount++;
+
+        string sentence = sentences.Dequeue();
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
 	}
@@ -58,7 +84,58 @@ public class DialogueManager : MonoBehaviour {
 
 	void EndDialogue()
 	{
+        if (!hasoption)
+        {
+            npcM.resolve(npc);
+        }
 		animator.SetBool("IsOpen", false);
-	}
+    }
+
+    public void Button1Clicked()
+    {
+        if(dialogue.correctChoice == 1)
+        {
+            correctAnswer();
+        }
+        else
+        {
+            incorrectAnswer();
+        }
+    }
+
+    public void Button2Clicked()
+    {
+        if (dialogue.correctChoice == 2)
+        {
+            correctAnswer();
+        }
+        else
+        {
+            incorrectAnswer();
+        }
+    }
+
+    private void correctAnswer()
+    {
+        optionAnimator.SetBool("isOptionOpen", false);
+        foreach (string sentence in dialogue.resolve)
+        {
+            sentences.Enqueue(sentence);
+        }
+        DisplayNextSentence();
+
+        npcM.resolve(npc);
+        dialogue.isresolved = true;
+    }
+
+    private void incorrectAnswer()
+    {
+        optionAnimator.SetBool("isOptionOpen", false);
+        foreach (string sentence in dialogue.notresolve)
+        {
+            sentences.Enqueue(sentence);
+        }
+        DisplayNextSentence();
+    }
 
 }

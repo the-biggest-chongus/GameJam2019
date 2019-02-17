@@ -4,30 +4,51 @@ using UnityEngine;
 
 public class EntranceController : MonoBehaviour
 {
-    public bool inside = false;
+    public bool startHidden = false;
     public List<GameObject> WallList;
     public bool hitCentre = false;
 
+    public bool EnterValue = false;
+    public bool ExitValue = true;
     private DialogueTrigger dialogueTrigger;
-    private bool initialDialogueTriggered = false;
 
     // Start is called before the first frame update
     void Start(){
         GameObject Parent = transform.parent.gameObject;
 
         foreach (Transform child in Parent.transform){
+
+            //fuck you Kenny
             if (child.tag == "wall_disappear"){
                 WallList.Add(child.gameObject);
+
+                if (child.name.Contains("desk")){
+                    foreach (Transform grandchild in child){
+                        WallList.Add(grandchild.gameObject);
+
+                        if (grandchild.name == "chairDesk"){
+                            WallList.Add(grandchild.GetChild(0).gameObject);
+                        }
+                    }
+                }
+
             }
         }
 
-        if (inside == true){
-            Enter();
+        if (startHidden == true){
+            EnterValue = true;
+            ExitValue = false;
+
+            Exit();
         }
 
+        else if (startHidden == false){
+            EnterValue = false;
+            ExitValue = true;
+        }
 
+        
         dialogueTrigger = this.GetComponent<DialogueTrigger>();
-
         
     }
 
@@ -38,28 +59,19 @@ public class EntranceController : MonoBehaviour
 
     public void Enter(){
 
-        print("in Enter()");
-
         //make walls disappear
         foreach (GameObject child in WallList){
-            child.GetComponent<Renderer>().enabled = false;
+            child.GetComponent<Renderer>().enabled = EnterValue;
         }
 
-        if (initialDialogueTriggered == false)
-        {
-            dialogueTrigger.TriggerDialogue();
-            initialDialogueTriggered = true;
-        }
     }
 
     public void Exit(){
-        //disappear[0].GetComponent<Renderer>().enabled = true;
-        //disappear[1].GetComponent<Renderer>().enabled = true;
 
         // make walls reappear
         foreach (GameObject child in WallList)
         {
-            child.GetComponent<Renderer>().enabled = true;
+            child.GetComponent<Renderer>().enabled = ExitValue;
         }
     }
 
