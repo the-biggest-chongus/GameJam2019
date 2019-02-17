@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 rightDirection = new Vector3(0, 0, 0);
             if (Input.GetKey(KeyCode.W))
             {
-                forwardDirection = forward * Time.deltaTime * speed;
+                forwardDirection = forward * Time.deltaTime * speed;             
             }
             if (Input.GetKey(KeyCode.A))
             {
@@ -52,11 +52,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (lastJumpTime + jumpRate < Time.time)
                 {
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * 3, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * 2, ForceMode.Impulse);
                     lastJumpTime = Time.time;
-                }
+                }                
             }
-
+            
 
         }
 
@@ -81,13 +81,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
 
-            GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(1,1f,0), Quaternion.identity);
+            GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(0,0.1f,0)+transform.forward, Quaternion.identity);
             bulletShot.transform.forward = transform.forward;
         }
     }
     private void OnTriggerStay(Collider other)
     {
-
+        
     }
 
 }
