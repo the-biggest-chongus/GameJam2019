@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Vector3 forward, right;
-    float speed = 15f;
+    public float speed = 15f;
     public GameObject projectile;
 
     float lastJumpTime = 0;

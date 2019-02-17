@@ -156,24 +156,24 @@ public class CubePlacer : MonoBehaviour
     private void PlaceObj(Vector3 clickPoint)
     {
         var objectPos = grid.GetNearestPointOnGrid(clickPoint);
-        objectPos += new Vector3(0, 0, 0.42f);
+        objectPos += new Vector3(0.2f, 0, 0.2f);
 
         // Apply Offset 
         if (CurrCube == 1)
         {
             //objectPos += new Vector3(0, 0, 0.3f);
-            Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
+            Instantiate(CurrCubeSelect, objectPos, Quaternion.Euler(0, 65f,0));
         }
         if (CurrCube == 2)
         {
             //objectPos += new Vector3(0, 0, 0.3f);
-            Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
+            Instantiate(CurrCubeSelect, objectPos, Quaternion.Euler(0,  65f, 0));
 
         }
         if (CurrCube == 3)
         {
            //objectPos += new Vector3(0, 0, 0.3f);
-            Instantiate(CurrCubeSelect, objectPos, Quaternion.identity);
+            Instantiate(CurrCubeSelect, objectPos, Quaternion.Euler(0,  65f, 0));
         }
        // Debug.Log("Trying to place shit"); 
     }
