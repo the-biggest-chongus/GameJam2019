@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BossAI : MonoBehaviour
 {
+    public GameObject player;
+
     public BossMouth mouth;
     private float timeUntilRage = 3f;
     [SerializeField]
@@ -55,9 +57,10 @@ public class BossAI : MonoBehaviour
     private void walkAround()
     {
         //animator.SetBool("walking", true);
-        float randomX = Random.Range(0, 50);
-        float randomZ = Random.Range(0, 50);
-        Vector3 randomDestination = new Vector3(randomX, 0f, randomZ);
+        //float randomX = Random.Range(0, 50);
+        //float randomZ = Random.Range(0, 50);
+        //Vector3 randomDestination = new Vector3(randomX, 0f, randomZ);
+        Vector3 randomDestination = getPositionNearPlayer();
 
         /*
         switch (randomDirection)
@@ -75,6 +78,19 @@ public class BossAI : MonoBehaviour
         GetComponent<NavMeshAgent>().isStopped = false;
         GetComponent<NavMeshAgent>().destination = randomDestination;
         rageInABit();
+    }
+
+    private Vector3 getPositionNearPlayer()
+    {
+        Vector3 playerPos = player.transform.position;
+        float playerX = playerPos.x;
+        float playerZ = playerPos.z;
+        float radius = 10f;
+
+        float randomXNearPlayer = Random.Range(playerX - radius, playerX + radius);
+        float randomZNearPlayer = Random.Range(playerZ - radius, playerZ + radius);
+
+        return new Vector3(randomXNearPlayer, playerPos.y, randomZNearPlayer);
     }
 
     private void rage()
