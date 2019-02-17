@@ -79,7 +79,7 @@ public class BossAI : MonoBehaviour
 
     private void rage()
     {
-        int chosenAttack = Random.Range(3, 4);
+        int chosenAttack = Random.Range(1, 4);
         print(chosenAttack);
 
         if (chosenAttack == 1 && bossFeelings == BossState.WALKING)
