@@ -6,6 +6,10 @@ using UnityEngine.AI;
 public class BossAI : MonoBehaviour
 {
     public GameObject player;
+    private bool TIMETORAGE = false;
+    private bool initialMeeting = true;
+
+    public Transform middleOfBossRoom;
 
     public BossMouth mouth;
     private float timeUntilRage = 3f;
@@ -25,7 +29,7 @@ public class BossAI : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        rageInABit();
+        
         walkAround();
     }
 
@@ -49,6 +53,13 @@ public class BossAI : MonoBehaviour
         }
     }
 
+    private void beginRage()
+    {
+        CancelInvoke("walkAround");
+        TIMETORAGE = true;
+        rageInABit();
+    }
+
     private void rageInABit()
     {
         Invoke("rage", timeUntilRage);
@@ -56,28 +67,45 @@ public class BossAI : MonoBehaviour
 
     private void walkAround()
     {
-        //animator.SetBool("walking", true);
-        //float randomX = Random.Range(0, 50);
-        //float randomZ = Random.Range(0, 50);
-        //Vector3 randomDestination = new Vector3(randomX, 0f, randomZ);
-        Vector3 randomDestination = getPositionNearPlayer();
-
-        /*
-        switch (randomDirection)
+        if (TIMETORAGE)
         {
-            case 1:
-                randomDestination = new Vector3(0,0,0);
-                print(Vector3.forward);
-                break;
-            case 2:
-                print("2");
-                randomDestination = new Vector3(35, 0, 35);
-                break;
+            //animator.SetBool("walking", true);
+            //float randomX = Random.Range(0, 50);
+            //float randomZ = Random.Range(0, 50);
+            //Vector3 randomDestination = new Vector3(randomX, 0f, randomZ);
+            Vector3 randomDestination = getPositionNearPlayer();
+
+
+            /*
+            switch (randomDirection)
+            {
+                case 1:
+                    randomDestination = new Vector3(0,0,0);
+                    print(Vector3.forward);
+                    break;
+                case 2:
+                    print("2");
+                    randomDestination = new Vector3(35, 0, 35);
+                    break;
+            }
+            */
+            GetComponent<NavMeshAgent>().isStopped = false;
+            GetComponent<NavMeshAgent>().destination = randomDestination;
+            rageInABit();
+
         }
-        */
-        GetComponent<NavMeshAgent>().isStopped = false;
-        GetComponent<NavMeshAgent>().destination = randomDestination;
-        rageInABit();
+        else // walk around broodingly, thinking about your bad employees
+        {
+            Vector3 bossRoom = middleOfBossRoom.position;
+            float wanderX = Random.Range(bossRoom.x - 50f, bossRoom.x + 50f);
+            float wanderZ = Random.Range(bossRoom.z - 50f, bossRoom.z + 50f);
+
+            Vector3 randomDestination = new Vector3(wanderX, transform.position.y, wanderZ);
+            GetComponent<NavMeshAgent>().isStopped = false;
+            GetComponent<NavMeshAgent>().destination = randomDestination;
+            Invoke("walkAround", 3f);
+        }
+        
     }
 
     private Vector3 getPositionNearPlayer()
@@ -103,7 +131,11 @@ public class BossAI : MonoBehaviour
 
     private void rage()
     {
-        int chosenAttack = Random.Range(1, 4);
+        int chosenAttack = 3;
+        if (initialMeeting == false)
+        {
+            chosenAttack = Random.Range(1, 4);
+        }
         print(chosenAttack);
 
         if (chosenAttack == 1 && bossFeelings == BossState.WALKING)
@@ -179,5 +211,10 @@ public class BossAI : MonoBehaviour
     {
         mouth.stopPiercingLanguage();
         walkAround();
+    }
+
+    public void noticeTheTooCheerfulEmployeeAndCrushThem()
+    {
+        beginRage();
     }
 }
