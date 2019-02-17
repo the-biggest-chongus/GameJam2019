@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (lastJumpTime + jumpRate < Time.time)
                 {
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * 2, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * 3, ForceMode.Impulse);
                     lastJumpTime = Time.time;
                 }                
             }
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
 
-            GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(0,0.1f,0), Quaternion.identity);
+            GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(0,1f,0), Quaternion.identity);
             bulletShot.transform.forward = transform.forward;
         }
     }
