@@ -25,21 +25,23 @@ public class DialogueManager : MonoBehaviour {
 
 	public void StartDialogue (Dialogue dialogue)
 	{
-        this.dialogue = dialogue;
+        if (!dialogue.isresolved)
+        {
+            this.dialogue = dialogue;
 
-		animator.SetBool("IsOpen", true);
-		nameText.text = dialogue.name;
+            animator.SetBool("IsOpen", true);
+            nameText.text = dialogue.name;
 
-		sentences.Clear();
+            sentences.Clear();
 
-        
-		foreach (string sentence in dialogue.sentences)
-		{
 
-			sentences.Enqueue(sentence);
-		}
-        
-		DisplayNextSentence();
+            foreach (string sentence in dialogue.sentences)
+            {
+                sentences.Enqueue(sentence);
+            }
+
+            DisplayNextSentence();
+        }
 	}
 
 	public void DisplayNextSentence ()
@@ -89,6 +91,10 @@ public class DialogueManager : MonoBehaviour {
         {
             correctAnswer();
         }
+        else
+        {
+            incorrectAnswer();
+        }
     }
 
     public void Button2Clicked()
@@ -110,6 +116,8 @@ public class DialogueManager : MonoBehaviour {
             sentences.Enqueue(sentence);
         }
         DisplayNextSentence();
+
+        dialogue.isresolved = true;
     }
 
     private void incorrectAnswer()
