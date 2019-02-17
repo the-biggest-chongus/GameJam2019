@@ -17,8 +17,21 @@ public class EntranceController : MonoBehaviour
         GameObject Parent = transform.parent.gameObject;
 
         foreach (Transform child in Parent.transform){
+
+            //fuck you Kenny
             if (child.tag == "wall_disappear"){
                 WallList.Add(child.gameObject);
+
+                if (child.name.Contains("desk")){
+                    foreach (Transform grandchild in child){
+                        WallList.Add(grandchild.gameObject);
+
+                        if (grandchild.name == "chairDesk"){
+                            WallList.Add(grandchild.GetChild(0).gameObject);
+                        }
+                    }
+                }
+
             }
         }
 
