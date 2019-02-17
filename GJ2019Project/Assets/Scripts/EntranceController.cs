@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EntranceController : MonoBehaviour
 {
-    public bool inside = false;
+    public bool startHidden = false;
     public List<GameObject> WallList;
     public bool hitCentre = false;
+
+    public bool EnterValue = false;
+    public bool ExitValue = true;
 
     // Start is called before the first frame update
     void Start(){
@@ -18,9 +21,19 @@ public class EntranceController : MonoBehaviour
             }
         }
 
-        if (inside == true){
-            Enter();
+        if (startHidden == true){
+            EnterValue = true;
+            ExitValue = false;
+
+            Exit();
         }
+
+        else if (startHidden == false){
+            EnterValue = false;
+            ExitValue = true;
+        }
+
+        
     }
 
     // Update is called once per frame
@@ -30,23 +43,19 @@ public class EntranceController : MonoBehaviour
 
     public void Enter(){
 
-        print("in Enter()");
-
         //make walls disappear
         foreach (GameObject child in WallList){
-            child.GetComponent<Renderer>().enabled = false;
+            child.GetComponent<Renderer>().enabled = EnterValue;
         }
 
     }
 
     public void Exit(){
-        //disappear[0].GetComponent<Renderer>().enabled = true;
-        //disappear[1].GetComponent<Renderer>().enabled = true;
 
         // make walls reappear
         foreach (GameObject child in WallList)
         {
-            child.GetComponent<Renderer>().enabled = true;
+            child.GetComponent<Renderer>().enabled = ExitValue;
         }
     }
 
