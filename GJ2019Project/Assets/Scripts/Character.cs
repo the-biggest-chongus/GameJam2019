@@ -34,7 +34,7 @@ public class Character : MonoBehaviour
         if(selfEsteem <= 97)
         {
             selfEsteem += 3;
-            Invoke("ResetColor", 0.2f);
+            //Invoke("ResetColor", 0.2f);
         }
     }
 
