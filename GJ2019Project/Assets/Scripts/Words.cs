@@ -13,6 +13,8 @@ public class Words : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+        //GetComponent<Rigidbody>().AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+        transform.Translate(Vector3.forward * Time.deltaTime * 15);
+        GetComponent<Rigidbody>().AddForce(-transform.up * 2f, ForceMode.Impulse);
     }
 }
