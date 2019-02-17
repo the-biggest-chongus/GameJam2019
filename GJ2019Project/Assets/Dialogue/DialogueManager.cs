@@ -7,10 +7,14 @@ public class DialogueManager : MonoBehaviour {
 
 	public Text nameText;
 	public Text dialogueText;
+    public Text option1;
+    public Text option2;
 
 	public Animator animator;
+    public Animator optionAnimator;
 
 	private Queue<string> sentences;
+    private bool hasOptions = false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +24,14 @@ public class DialogueManager : MonoBehaviour {
 	public void StartDialogue (Dialogue dialogue)
 	{
 		animator.SetBool("IsOpen", true);
+
+        if (dialogue.hasChoice == true)
+        {
+            option1.text = dialogue.choice1;
+            option2.text = dialogue.choice2;
+            hasOptions = true;   
+            optionAnimator.SetBool("isOptionOpen", true);
+        }
 
 		nameText.text = dialogue.name;
 
@@ -59,6 +71,11 @@ public class DialogueManager : MonoBehaviour {
 	void EndDialogue()
 	{
 		animator.SetBool("IsOpen", false);
-	}
+
+        if (hasOptions == true)
+        {
+            optionAnimator.SetBool("isOptionOpen", false);
+        }
+    }
 
 }

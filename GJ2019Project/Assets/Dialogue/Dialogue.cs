@@ -10,4 +10,8 @@ public class Dialogue {
 	[TextArea(3, 10)]
 	public string[] sentences;
 
+    public bool hasChoice;
+    public string choice1;
+    public string choice2;
+
 }
