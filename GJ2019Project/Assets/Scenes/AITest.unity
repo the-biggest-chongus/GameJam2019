@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -724,6 +724,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &878502567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878502561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58f47331a371d5429d491208cf3d6b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponentWordTag: KindWord
+  selfEsteem: 100
 --- !u!1001 &978301545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -806,6 +820,34 @@ PrefabInstance:
     - target: {fileID: 9526514, guid: 1d3b1a1513de66247974634911345b98, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139742, guid: 1d3b1a1513de66247974634911345b98, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 115824, guid: 1d3b1a1513de66247974634911345b98, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 185264, guid: 1d3b1a1513de66247974634911345b98, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 103594, guid: 1d3b1a1513de66247974634911345b98, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 186566, guid: 1d3b1a1513de66247974634911345b98, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 188130, guid: 1d3b1a1513de66247974634911345b98, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 180320, guid: 1d3b1a1513de66247974634911345b98, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 414034, guid: 1d3b1a1513de66247974634911345b98, type: 3}
       propertyPath: m_LocalRotation.x
@@ -950,34 +992,6 @@ PrefabInstance:
     - target: {fileID: 491394, guid: 1d3b1a1513de66247974634911345b98, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99958676
-      objectReference: {fileID: 0}
-    - target: {fileID: 139742, guid: 1d3b1a1513de66247974634911345b98, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 115824, guid: 1d3b1a1513de66247974634911345b98, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 185264, guid: 1d3b1a1513de66247974634911345b98, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 103594, guid: 1d3b1a1513de66247974634911345b98, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 186566, guid: 1d3b1a1513de66247974634911345b98, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 188130, guid: 1d3b1a1513de66247974634911345b98, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 180320, guid: 1d3b1a1513de66247974634911345b98, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 120830, guid: 1d3b1a1513de66247974634911345b98, type: 3}
       propertyPath: m_Layer
@@ -1451,6 +1465,7 @@ GameObject:
   - component: {fileID: 1267878800}
   - component: {fileID: 1267878799}
   - component: {fileID: 1267878804}
+  - component: {fileID: 1267878805}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1562,6 +1577,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 3132689655736011923, guid: 8aadb112716ca6f468e60c0a407e4411,
     type: 3}
+--- !u!114 &1267878805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267878798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58f47331a371d5429d491208cf3d6b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponentWordTag: HurtfulWord
+  selfEsteem: 100
 --- !u!1 &1297317112
 GameObject:
   m_ObjectHideFlags: 0
