@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour {
     private Dialogue dialogue;
     private int sentenceCount = 0;
     private GameObject npc;
+    private bool hasoption = false;
 
     // Use this for initialization
     void Start () {
@@ -60,8 +61,8 @@ public class DialogueManager : MonoBehaviour {
 
         if (sentenceCount == dialogue.questionSentence && dialogue.hasChoice)
         {
-
             optionAnimator.SetBool("isOptionOpen", true);
+            hasoption = true;
         }
 
         sentenceCount++;
@@ -83,6 +84,10 @@ public class DialogueManager : MonoBehaviour {
 
 	void EndDialogue()
 	{
+        if (!hasoption)
+        {
+            npcM.resolve(npc);
+        }
 		animator.SetBool("IsOpen", false);
     }
 
