@@ -17,7 +17,7 @@ public class npcManager : MonoBehaviour
 
     void Start()
     {
-        progress.fillAmount = 0;
+        //progress.fillAmount = 0;
         int i = 0;
         while (i < npcs.Count)
         {
@@ -60,7 +60,7 @@ public class npcManager : MonoBehaviour
             }
             i++;
         }
-        progress.fillAmount = (float)completedCount / (float)npcs.Count;
+        //progress.fillAmount = (float)completedCount / (float)npcs.Count;
     }
 
 
