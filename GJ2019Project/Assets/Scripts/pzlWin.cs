@@ -6,11 +6,7 @@ public class pzlWin : MonoBehaviour
 {
 
     // Flag 
-    private bool t1;
-    private bool t2;
-    private bool t3;
-    private bool t4;
-    private bool t5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,62 +18,76 @@ public class pzlWin : MonoBehaviour
     {
         
     }
-
+   
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("win1"))
         {
-            t1 = true;
-            Debug.Log(t1);
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w1 = true;
+         
         }
         else if (col.CompareTag("win2"))
         {
-            t2 = true;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w2 = true;
         }
         else if (col.CompareTag("win3"))
         {
-            t3 = true;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w3 = true;
         }
         else if (col.CompareTag("win4"))
         {
-            t4 = true;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w4 = true;
         }
         else if (col.CompareTag("win5"))
         {
-            t5 = true;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w5 = true;
         }
 
-        if (t1 && t2 && t3 && t4 && t5)
-        {
-            Debug.Log("You fucking win this god damn  shitty ass puzzle game congratz");
-            // Do shit when you win 
-
-        }
+       
     }
     // Don't forget to set the variables to false when your object exits the triggers!
     void OnTriggerExit(Collider col)
     {
         if (col.CompareTag("win1"))
         {
-            t1 = false;
-            Debug.Log(t1);
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w1 = false;
 
         }
         if (col.CompareTag("win2"))
         {
-            t2 = false;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w2 = false;
         }
         if (col.CompareTag("win3"))
         {
-            t3 = false;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w3 = false;
         }
         if (col.CompareTag("win4"))
         {
-            t4 = false;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w4 = false;
         }
         if (col.CompareTag("win5"))
         {
-            t5 = false;
+            GameObject Flags = GameObject.Find("GameWinCond");
+            GWC _flag = Flags.GetComponent<GWC>();
+            _flag.w5 = false;
         }
     }
 }

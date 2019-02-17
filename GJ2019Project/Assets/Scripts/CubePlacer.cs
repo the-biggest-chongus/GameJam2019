@@ -17,9 +17,9 @@ public class CubePlacer : MonoBehaviour
     public GameObject CurrCubeSelect; 
 
     // Number of Cubes Available for placement 
-    public int CubeCount_L1 = 3;
-    public int CubeCount_L2 = 3;
-    public int CubeCount_L3 = 3;
+    public int CubeCount_L1 = 8;
+    public int CubeCount_L2 = 8;
+    public int CubeCount_L3 = 8;
 
 
     // UI 
