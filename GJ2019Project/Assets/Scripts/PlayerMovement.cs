@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Vector3 forward, right;
-    float speed = 4f;
+    float speed = 15f;
     public GameObject projectile;
 
     float lastJumpTime = 0;
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Shooting
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) )
         {
 
             GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(0,0.1f,0)+transform.forward, Quaternion.identity);

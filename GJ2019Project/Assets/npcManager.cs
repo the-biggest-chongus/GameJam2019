@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class npcManager : MonoBehaviour
 {
-    public List<string> npcs;
+    public List<GameObject> npcs;
 
     public List<bool> completed;
 
@@ -18,7 +18,7 @@ public class npcManager : MonoBehaviour
         }
     }
 
-        public void resolve(string npc)
+        public void resolve(GameObject npc)
     {
         int i = 0;
         while (i < npcs.Count)

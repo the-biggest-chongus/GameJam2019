@@ -19,14 +19,14 @@ public class DialogueManager : MonoBehaviour {
     private bool hasOptions = false;
     private Dialogue dialogue;
     private int sentenceCount = 0;
-    private string npc;
+    private GameObject npc;
 
     // Use this for initialization
     void Start () {
 		sentences = new Queue<string>();
     }
 
-	public void StartDialogue (string npc, Dialogue dialogue)
+	public void StartDialogue (GameObject npc, Dialogue dialogue)
 	{
         if (!dialogue.isresolved)
         {
@@ -37,7 +37,6 @@ public class DialogueManager : MonoBehaviour {
             nameText.text = dialogue.name;
 
             sentences.Clear();
-
 
             foreach (string sentence in dialogue.sentences)
             {
@@ -64,6 +63,7 @@ public class DialogueManager : MonoBehaviour {
             optionAnimator.SetBool("isOptionOpen", true);
         }
         sentenceCount++;
+
         string sentence = sentences.Dequeue();
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
