@@ -17,7 +17,7 @@ public class InteractionNPC : MonoBehaviour
     void Start()
     {
         dialogueTrigger = this.GetComponent<DialogueTrigger>();
-        attention = this.transform.GetChild(0).gameObject;
+
         attention.GetComponent<Renderer>().enabled = false;
     }
 
@@ -40,7 +40,7 @@ public class InteractionNPC : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            dialogueTrigger.TriggerDialogue(this.gameObject.name);
+            dialogueTrigger.TriggerDialogue(this.gameObject);
             //print("happy state");
             //happyState = 1;
             //GameObject particlePlaced = Instantiate(heartParticles, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
