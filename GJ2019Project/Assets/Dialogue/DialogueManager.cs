@@ -16,7 +16,6 @@ public class DialogueManager : MonoBehaviour {
     public Animator optionAnimator;
 
     private Queue<string> sentences;
-    private bool hasOptions = false;
     private Dialogue dialogue;
     private int sentenceCount = 0;
     private GameObject npc;
@@ -30,8 +29,12 @@ public class DialogueManager : MonoBehaviour {
 	{
         if (!dialogue.isresolved)
         {
+            sentenceCount = 0;
             this.npc = npc;
             this.dialogue = dialogue;
+
+            option1.text = dialogue.choice1;
+            option2.text = dialogue.choice2;
 
             animator.SetBool("IsOpen", true);
             nameText.text = dialogue.name;
@@ -57,11 +60,10 @@ public class DialogueManager : MonoBehaviour {
 
         if (sentenceCount == dialogue.questionSentence && dialogue.hasChoice)
         {
-            option1.text = dialogue.choice1;
-            option2.text = dialogue.choice2;
-            hasOptions = true;
+
             optionAnimator.SetBool("isOptionOpen", true);
         }
+
         sentenceCount++;
 
         string sentence = sentences.Dequeue();
