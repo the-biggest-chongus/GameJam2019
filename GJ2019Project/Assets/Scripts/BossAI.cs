@@ -15,7 +15,8 @@ public class BossAI : MonoBehaviour
     {
         WALKING,
         RAGING,
-        REPRIMAND
+        REPRIMAND,
+        GLARE
     }
 
     // Start is called before the first frame update
@@ -38,6 +39,9 @@ public class BossAI : MonoBehaviour
             spinLikeCrazy();
             angrySpewing();
         } else if (bossFeelings == BossState.REPRIMAND)
+        {
+
+        } else if (bossFeelings == BossState.GLARE)
         {
 
         }
@@ -75,7 +79,7 @@ public class BossAI : MonoBehaviour
 
     private void rage()
     {
-        int chosenAttack = Random.Range(1, 3);
+        int chosenAttack = Random.Range(3, 4);
         print(chosenAttack);
 
         if (chosenAttack == 1 && bossFeelings == BossState.WALKING)
@@ -89,6 +93,10 @@ public class BossAI : MonoBehaviour
             animator.SetBool("reprimand", true);
             animator.SetBool("walking", false);
             mouth.calculatedBarrage();
+        } else if (chosenAttack == 3 && bossFeelings == BossState.WALKING)
+        {
+            bossFeelings = BossState.GLARE;
+            mouth.piercingLanguage();
         }
 
         GetComponent<NavMeshAgent>().isStopped = true;
@@ -121,7 +129,11 @@ public class BossAI : MonoBehaviour
             animator.SetBool("reprimand", false);
             animator.SetBool("walking", true);
         }
-        
+        else if (bossFeelings == BossState.GLARE)
+        {
+            stopPiercing();
+            bossFeelings = BossState.WALKING;
+        }
     }
 
     private void stopSpewing()
@@ -133,6 +145,12 @@ public class BossAI : MonoBehaviour
     private void stopReprimanding()
     {
         mouth.stopCalculatedBarrage();
+        walkAround();
+    }
+
+    private void stopPiercing()
+    {
+        mouth.stopPiercingLanguage();
         walkAround();
     }
 }

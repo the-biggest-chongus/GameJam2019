@@ -60,4 +60,17 @@ public class BossMouth : Mouth
     {
         sweepLeft = false;
     }
+
+    public void piercingLanguage()
+    {
+        print("HOHOHOHOHOHOHOHOHOWHWOWHOHWOWWWWWWWWWW");
+        base.startSpeakingAngryWords(0.5f);
+        base.startSpeakingAngryWords(0.5f);
+        base.startSpeakingAngryWords(0.5f);
+    }
+
+    public void stopPiercingLanguage()
+    {
+        base.stopSpeakingAngryWords();
+    }
 }

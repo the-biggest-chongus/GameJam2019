@@ -39,4 +39,11 @@ public class Mouth : MonoBehaviour
     {
         Instantiate(words, transform.position, transform.rotation);
     }
+
+    protected void triple()
+    {
+        Instantiate(words, transform.position, transform.rotation);
+        Instantiate(words, transform.position, transform.rotation);
+        Instantiate(words, transform.position, transform.rotation);
+    }
 }
