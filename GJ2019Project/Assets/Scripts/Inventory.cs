@@ -40,4 +40,20 @@ public class Inventory : MonoBehaviour
         }
         return numberOfItem;
     }
+
+    public bool giveItem(Item item, int numberToGive)
+    {
+        bool haveEnough = false;
+        if (items.ContainsKey(item))
+        {
+            if (items[item] >= numberToGive)
+            {
+                haveEnough = true;
+            }
+        }
+
+        items[item] = items[item] - numberToGive;
+        //print("You don't have " + numberToGive + " " + item + ", you have " + items[item]);
+        return haveEnough;
+    }
 }
