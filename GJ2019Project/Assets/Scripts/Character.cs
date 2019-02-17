@@ -20,13 +20,22 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("addHealth", 2.0f,2.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void addHealth()
+    {
+        if(selfEsteem <= 97)
+        {
+            selfEsteem += 3;
+            Invoke("ResetColor", 0.2f);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
