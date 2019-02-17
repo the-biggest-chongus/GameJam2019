@@ -38,8 +38,12 @@ public class CubePlacer : MonoBehaviour
        // ValidPosCheck();
         ChangeCube();
         Countupdate();
-       
-        
+        PlaceObj();
+        TestObj();
+    }
+
+    public void PlaceObj()
+    {
         // Left click places a cube  at spot 
         if (Input.GetMouseButtonDown(0))
         {
@@ -49,7 +53,7 @@ public class CubePlacer : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo))
             {
 
-                if(CurrCube == 1 && CubeCount_L1 >= 1)
+                if (CurrCube == 1 && CubeCount_L1 >= 1)
                 {
                     PlaceCubeNear(hitInfo.point);
                     CubeCount_L1--;
@@ -68,10 +72,23 @@ public class CubePlacer : MonoBehaviour
             }
 
         }
-        //                bluePortal = (GameObject)Instantiate(bluePortalPrefab, hit.point + (Vector3.up * 0.5f), rotation);
-
 
     }
+    public void TestObj()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            RaycastHit hitInfo;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                PlaceTestObj(hitInfo.point);
+            }
+        }
+    }
+
+
     public void Countupdate()
     {
         CubeText_L1.text = "Count 1: " + CubeCount_L1.ToString();
@@ -128,5 +145,16 @@ public class CubePlacer : MonoBehaviour
         GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
 
         //GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = nearPoint;
+    }
+
+    private void PlaceTestObj(Vector3 clickPoint)
+    {
+       //var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
+        //                bluePortal = (GameObject)Instantiate(bluePortalPrefab, hit.point + (Vector3.up * 0.5f), rotation);
+
+
+        var objectPos = grid.GetNearestPointOnGrid(clickPoint);
+        Instantiate(Cube_L2, objectPos, Quaternion.identity);
+        Debug.Log("Trying to place shit"); 
     }
 }
