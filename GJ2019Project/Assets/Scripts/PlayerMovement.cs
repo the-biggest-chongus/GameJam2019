@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
 
-            GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(0,0.1f,0), Quaternion.identity);
+            GameObject bulletShot = Instantiate(projectile, transform.position + new Vector3(1,0.1f,0), Quaternion.identity);
             bulletShot.transform.forward = transform.forward;
         }
     }
