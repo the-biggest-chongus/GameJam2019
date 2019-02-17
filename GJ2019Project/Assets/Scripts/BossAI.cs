@@ -85,12 +85,20 @@ public class BossAI : MonoBehaviour
         Vector3 playerPos = player.transform.position;
         float playerX = playerPos.x;
         float playerZ = playerPos.z;
-        float radius = 10f;
+        float radius = 5f;
 
         float randomXNearPlayer = Random.Range(playerX - radius, playerX + radius);
         float randomZNearPlayer = Random.Range(playerZ - radius, playerZ + radius);
 
         return new Vector3(randomXNearPlayer, playerPos.y, randomZNearPlayer);
+    }
+
+    private void turnTowardsPlayer()
+    {
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, player.transform.position, 500, 0.0f);
+
+        // Move our position a step closer to the target.
+        transform.rotation = Quaternion.LookRotation(newDir);
     }
 
     private void rage()
@@ -103,15 +111,18 @@ public class BossAI : MonoBehaviour
             bossFeelings = BossState.RAGING;
             animator.SetBool("raging", true);
             animator.SetBool("walking", false);
+            turnTowardsPlayer();
         } else if (chosenAttack == 2 && bossFeelings == BossState.WALKING)
         {
             bossFeelings = BossState.REPRIMAND;
             animator.SetBool("reprimand", true);
             animator.SetBool("walking", false);
+            turnTowardsPlayer();
             mouth.calculatedBarrage();
         } else if (chosenAttack == 3 && bossFeelings == BossState.WALKING)
         {
             bossFeelings = BossState.GLARE;
+            turnTowardsPlayer();
             mouth.piercingLanguage();
         }
 
