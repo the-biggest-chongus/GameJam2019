@@ -10,6 +10,8 @@ public class DialogueManager : MonoBehaviour {
     public Text option1;
     public Text option2;
 
+    public npcManager npcM;
+
 	public Animator animator;
     public Animator optionAnimator;
 
@@ -115,6 +117,7 @@ public class DialogueManager : MonoBehaviour {
         }
         DisplayNextSentence();
 
+        npcM.resolve(npc);
         dialogue.isresolved = true;
     }
 

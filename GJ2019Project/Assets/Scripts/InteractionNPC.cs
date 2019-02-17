@@ -21,12 +21,6 @@ public class InteractionNPC : MonoBehaviour
         attention.GetComponent<Renderer>().enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void triggerActive()
     {
         activeAttention = true;
