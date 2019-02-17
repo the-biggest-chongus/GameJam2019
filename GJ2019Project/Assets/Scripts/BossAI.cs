@@ -13,7 +13,8 @@ public class BossAI : MonoBehaviour
     private enum BossState
     {
         WALKING,
-        RAGING
+        RAGING,
+        REPRIMAND
     }
 
     // Start is called before the first frame update
@@ -35,6 +36,9 @@ public class BossAI : MonoBehaviour
         {
             spinLikeCrazy();
             angrySpewing();
+        } else if (bossFeelings == BossState.REPRIMAND)
+        {
+
         }
     }
 
@@ -70,8 +74,17 @@ public class BossAI : MonoBehaviour
 
     private void rage()
     {
-        bossFeelings = BossState.RAGING;
-        animator.SetTrigger("raging");
+        int chosenAttack = Random.Range(1, 3);
+
+        if (chosenAttack == 1)
+        {
+            bossFeelings = BossState.RAGING;
+            animator.SetTrigger("raging");
+        } else if (chosenAttack == 2)
+        {
+            bossFeelings = BossState.REPRIMAND;
+        }
+      
         Invoke("stopRaging", 4f);
     }
 
