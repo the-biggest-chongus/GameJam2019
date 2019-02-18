@@ -55296,6 +55296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rugRound
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 94158c2198e78cb4f9c4eba475af355c, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 94158c2198e78cb4f9c4eba475af355c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 208.5

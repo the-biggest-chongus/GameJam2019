@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
+    public Transform respawnPoint;
+
     public string opponentWordTag; // enemy "bullet"
     public int damageTaken;
 
@@ -16,6 +18,8 @@ public class Character : MonoBehaviour
     public GameObject damagePanel;
 
     float lastHitTime = 0;
+
+    bool first = true;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +37,7 @@ public class Character : MonoBehaviour
     {
         if(selfEsteem <= 97)
         {
-            selfEsteem += 3;
+            //selfEsteem += 3;
             //Invoke("ResetColor", 0.2f);
         }
     }
@@ -50,6 +54,11 @@ public class Character : MonoBehaviour
             {
                 damagePanel.GetComponent<Image>().color = new Color(0.8f,0,0,0.5f);
                 Invoke("ResetColor", 0.2f);
+                if (selfEsteem <= 0 && first == true)
+                {
+                    transform.position = respawnPoint.position;
+                    selfEsteem = 100;
+                }
             }
         }
     }
