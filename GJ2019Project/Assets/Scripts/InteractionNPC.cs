@@ -18,7 +18,7 @@ public class InteractionNPC : MonoBehaviour
     {
         dialogueTrigger = this.GetComponent<DialogueTrigger>();
 
-        attention.GetComponent<Renderer>().enabled = false;
+        //attention.GetComponent<Renderer>().enabled = false;
     }
 
     public void triggerActive()
@@ -28,14 +28,14 @@ public class InteractionNPC : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        attention.GetComponent<Renderer>().enabled = false;
+        //attention.GetComponent<Renderer>().enabled = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (activeAttention)
         {
-            attention.GetComponent<Renderer>().enabled = true;
+            //attention.GetComponent<Renderer>().enabled = true;
         }
         
         if (Input.GetKeyDown(KeyCode.E))

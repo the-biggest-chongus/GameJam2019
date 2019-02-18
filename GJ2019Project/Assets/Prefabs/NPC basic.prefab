@@ -48,10 +48,10 @@ GameObject:
   - component: {fileID: 6826210579833333435}
   - component: {fileID: 6826210579833333436}
   - component: {fileID: 6826210579833333437}
-  - component: {fileID: 6826210579833333410}
   - component: {fileID: 6826210579833333411}
   - component: {fileID: 6826210579833333432}
   - component: {fileID: 2120268615}
+  - component: {fileID: 8904056369767509494}
   m_Layer: 0
   m_Name: NPC basic
   m_TagString: Untagged
@@ -106,21 +106,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6826210579833333410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6826210579833333408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b235e3e604baee74299aa97291ed1763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heartParticles: {fileID: 0}
-  dialogueManager: {fileID: 0}
-  attention: {fileID: 6826210580070880351}
 --- !u!114 &6826210579833333411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +180,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8904056369767509494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826210579833333408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b235e3e604baee74299aa97291ed1763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartParticles: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  attention: {fileID: 6826210580070880351}
 --- !u!1 &6826210580070880351
 GameObject:
   m_ObjectHideFlags: 0

@@ -22616,7 +22616,7 @@ MonoBehaviour:
   - {fileID: 1842575327}
   - {fileID: 2073290416}
   - {fileID: 2049431023}
-  items: 01010100000000
+  items: 01010101010101
   completed: 
 --- !u!4 &596319972
 Transform:
@@ -38646,7 +38646,21 @@ PrefabInstance:
     - target: {fileID: 6826210579833333411, guid: ff58f11ce32d5db4586c4a82c66e2f4b,
         type: 3}
       propertyPath: dialogue.name
-      value: Business Woman Melanie
+      value: Business Woman Mel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826210579833333411, guid: ff58f11ce32d5db4586c4a82c66e2f4b,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: 'I have no time for my kids...
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826210579833333411, guid: ff58f11ce32d5db4586c4a82c66e2f4b,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 'Help me build a healthy work-life balance in my calendar!!
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6826210580070880350, guid: ff58f11ce32d5db4586c4a82c66e2f4b,
         type: 3}
@@ -54349,6 +54363,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 9cd8794a223f80345b52dad9229b9913, type: 3}
+--- !u!1 &1474768155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474768156}
+  m_Layer: 0
+  m_Name: Respawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1474768156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474768155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33.4, y: 0.6, z: -165.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1475182372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54370,7 +54414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 219.2
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -54378,7 +54422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -341
+      value: -164
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -54468,9 +54512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58f47331a371d5429d491208cf3d6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 1474768156}
   opponentWordTag: HurtfulWord
   damageTaken: 5
-  selfEsteem: 100
+  selfEsteem: 1
   healthUI: {fileID: 568716736}
   damagePanel: {fileID: 942895473}
 --- !u!114 &1475182375
@@ -93494,9 +93539,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6826210580293617688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d8d8f3748ff4f4390f2d9b6b2ba608, type: 3}
+  m_Script: {fileID: 11500000, guid: b235e3e604baee74299aa97291ed1763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartParticles: {fileID: 0}
+  dialogueManager: {fileID: 113363506}
+  attention: {fileID: 0}
 --- !u!114 &6826210580293617691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93721,9 +93769,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6826210580405827857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d8d8f3748ff4f4390f2d9b6b2ba608, type: 3}
+  m_Script: {fileID: 11500000, guid: b235e3e604baee74299aa97291ed1763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartParticles: {fileID: 0}
+  dialogueManager: {fileID: 113363506}
+  attention: {fileID: 0}
 --- !u!212 &6826210580567935976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93867,9 +93918,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6826210580670875053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d8d8f3748ff4f4390f2d9b6b2ba608, type: 3}
+  m_Script: {fileID: 11500000, guid: b235e3e604baee74299aa97291ed1763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartParticles: {fileID: 0}
+  dialogueManager: {fileID: 113363506}
+  attention: {fileID: 0}
 --- !u!135 &6826210580670875056
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -94412,7 +94466,7 @@ MonoBehaviour:
     hasChoice: 1
     questionSentence: 1
     choice1: Bobby Might?
-    choice2: How about Cohn?
+    choice2: Cohn?
     correctChoice: 1
     resolve:
     - Yes, he's just the right person!
@@ -94428,9 +94482,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6826210581661178381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d8d8f3748ff4f4390f2d9b6b2ba608, type: 3}
+  m_Script: {fileID: 11500000, guid: b235e3e604baee74299aa97291ed1763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartParticles: {fileID: 0}
+  dialogueManager: {fileID: 113363506}
+  attention: {fileID: 0}
 --- !u!135 &6826210581661178384
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -94508,8 +94565,8 @@ MonoBehaviour:
 '
     hasChoice: 1
     questionSentence: 1
-    choice1: Bobby looks cheif like?
-    choice2: Cam loves cooking...
+    choice1: Bobby ?
+    choice2: Cam ?
     correctChoice: 2
     resolve:
     - You're right. You're great at listening.
@@ -94526,9 +94583,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6826210581720176459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d8d8f3748ff4f4390f2d9b6b2ba608, type: 3}
+  m_Script: {fileID: 11500000, guid: b235e3e604baee74299aa97291ed1763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartParticles: {fileID: 0}
+  dialogueManager: {fileID: 113363506}
+  attention: {fileID: 0}
 --- !u!1 &6826210581720176459
 GameObject:
   m_ObjectHideFlags: 0
