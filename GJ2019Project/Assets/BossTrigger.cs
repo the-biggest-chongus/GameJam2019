@@ -6,6 +6,8 @@ public class BossTrigger : MonoBehaviour
 {
     public GameObject boss;
 
+    private int level = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,16 @@ public class BossTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            boss.GetComponent<BossAI>().noticeTheTooCheerfulEmployeeAndCrushThem();
+            level++;
+            if (level == 1)
+            {
+                boss.GetComponent<BossAI>().noticeTheTooCheerfulEmployeeAndCrushThem();
+            }
+            else if (level == 2)
+            {
+                boss.GetComponent<BossAI>().finalBattle();
+            }
+            
         }
     }
 }

@@ -30,4 +30,9 @@ public class UIAppearing : MonoBehaviour
             
         }
     }
+
+    public void killUI()
+    {
+        menu.SetActive(false);
+    }
 }

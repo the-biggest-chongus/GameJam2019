@@ -24,7 +24,6 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("addHealth", 2.0f,2.0f);
     }
 
     // Update is called once per frame
@@ -33,14 +32,6 @@ public class Character : MonoBehaviour
         
     }
 
-    public void addHealth()
-    {
-        if(selfEsteem <= 97)
-        {
-            //selfEsteem += 3;
-            //Invoke("ResetColor", 0.2f);
-        }
-    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -58,6 +49,8 @@ public class Character : MonoBehaviour
                 {
                     transform.position = respawnPoint.position;
                     selfEsteem = 100;
+                    GameObject.Find("BlueSuitFree01").GetComponent<BossAI>().resetBossFight();
+                    GameObject.Find("UITrigger").GetComponent<UIAppearing>().killUI();
                 }
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BossAI : MonoBehaviour
 {
@@ -26,6 +27,15 @@ public class BossAI : MonoBehaviour
         REPRIMAND,
         GLARE
     }
+
+    public string opponentWordTag; // enemy "bullet"
+    public int damageTaken;
+
+    [SerializeField]
+    private int selfEsteem = 100; // health
+
+    public Slider healthUI;
+    float lastHitTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -220,5 +230,34 @@ public class BossAI : MonoBehaviour
     public void noticeTheTooCheerfulEmployeeAndCrushThem()
     {
         beginRage();
+    }
+
+    public void finalBattle()
+    {
+        initialMeeting = false;
+        beginRage();
+    }
+
+    public void resetBossFight()
+    {
+        CancelInvoke("rage");
+        CancelInvoke("walkAround");
+        TIMETORAGE = false;
+        walkAround();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == opponentWordTag && lastHitTime + 0.5f < Time.time)
+        {
+            selfEsteem -= damageTaken;
+            healthUI.value -= damageTaken;
+            Destroy(other.gameObject);
+
+            if (selfEsteem <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
