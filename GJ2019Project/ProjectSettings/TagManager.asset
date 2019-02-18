@@ -16,6 +16,9 @@ TagManager:
   - win3
   - win4
   - win5
+  - KindWord
+  - HurtfulWord
+  - Terrain
   layers:
   - Default
   - TransparentFX
