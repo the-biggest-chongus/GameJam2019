@@ -15,7 +15,7 @@ Game jame 2019 Hackathon project using Unity.
 | Melissa Lee    |
 
 
-## Features:
+## Features
 
 ### Animated Boss AI
 
@@ -42,7 +42,15 @@ Game jame 2019 Hackathon project using Unity.
 * Dialogue puzzle where the player helps NPC's with the option dialogue feature.
 * Calendar puzzle for the player to decide how to fill an NPC's calendar.
 
-## Game Themes:
+## Story
+
+It's your first day as an intern at G. You walk in and the receptionist tells you to see the boss. You see the boss and the boss kills all your self esteem in one hit. You start over but need to help the rest of the company to build your self esteem.
+
+You unlock the Janitor from a hidden closet. You help the developers collaborate with eachother. You help a business women create a good work life balance.
+
+Once you've built up all your self esteem, you go back to the boss and are able to shoot positivity to make him 100% happy.
+
+## GameJam 2019 Themes
 
 ### Main:
 
