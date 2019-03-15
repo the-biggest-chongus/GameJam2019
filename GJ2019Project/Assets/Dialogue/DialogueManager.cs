@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Dialogue Manager: handles the dialogue box
+// - Makes the dialogue box visible and invisible
+// - Queues different dialogue strings into the dialogue box
 public class DialogueManager : MonoBehaviour {
 
-	public Text nameText;
-	public Text dialogueText;
-    public Text option1;
-    public Text option2;
+    public Text nameText;	    	//name of person
+    public Text dialogueText;       	//what the person says
+    public Text option1;	    	//option1 button text
+    public Text option2;	    	//option2 button text
 
-    public npcManager npcM;
+    public npcManager npcM;         	//global npc manager
 
-	public Animator animator;
-    public Animator optionAnimator;
+    public Animator animator;	    	//animator for dialogue box
+    public Animator optionAnimator; 	//animator for options
 
-    private Queue<string> sentences;
-    private Dialogue dialogue;
-    private int sentenceCount = 0;
-    private GameObject npc;
-    private bool hasoption = false;
+    private Queue<string> sentences;	//sentence queue
+    private Dialogue dialogue;      	//dialogue which will contain the sentences and name
+    private int sentenceCount = 0;  	//how many sentences to read
+    private GameObject npc;		//which npc to initialize
+    private bool hasoption = false;	//does the npc have options?
 
-    // Use this for initialization
+
     void Start () {
 		sentences = new Queue<string>();
     }
